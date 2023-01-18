@@ -2,7 +2,7 @@
 
 ## Description
 
-Secure Key is a rich option and secure password generator. It allow user to select include different type of characters include in the password base on the user's preference.   
+Secure Key is a rich options secure password generator. It allows the user to specify the password length and select different character type for password generation.   
 
 
 ## Live Site
