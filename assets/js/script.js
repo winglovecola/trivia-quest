@@ -1,6 +1,5 @@
-//generate password base on user preference
 
-//start angular
+//start angularjs
 var myapp = angular.module("app", ['ngAnimate']);
   myapp.controller("myController", function($scope) {
 
@@ -40,9 +39,7 @@ var myapp = angular.module("app", ['ngAnimate']);
       specialCharNumChar: 0
     };
 
-    $scope.scrollTo = function (id) {
-      $anchorScroll(id);  
-    }
+
     
     $scope.kengenCharNumSub = function () {
       if ($scope.kengenCharNum <= 8)
@@ -81,15 +78,11 @@ var myapp = angular.module("app", ['ngAnimate']);
     }
 
     $scope.keygenConfirm = function () {
-
-      
-      
+     
       let charTypeArray = [];
       let totalType = 0;
       
-
-
-      
+   
       //when number of character has not specify, set the value to 8 characters
       if ($scope.kengenCharNum == "")
         $scope.kengenCharNum = "8";
@@ -98,7 +91,6 @@ var myapp = angular.module("app", ['ngAnimate']);
       else if ($scope.kengenCharNum > 128)
         $scope.kengenCharNum = "128";
            
-
 
       $scope.kengenCharNumLeft = $scope.kengenCharNum;
 
@@ -249,7 +241,7 @@ let charDifference = 0;
 
 //create the randomness of the number of character in each type 
 //increase or decrease the typeCharPercentage base on the percentageDiff
-// random from 10% to 50% of character either increase or decresae
+// random from 10% to 20% of character either increase or decresae
 function typeCharPercentageDiff (typeCharNum) {
 
   
