@@ -1,0 +1,151 @@
+
+header {
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+
+}
+
+header.ng-hide {
+  opacity: 0;
+}
+
+header.ng-hide-add, header.ng-hide-remove {
+  transition: all .5s ease-out;
+}
+
+main {
+
+  display: block;
+  min-height: 700px;
+}
+
+
+main section, main div {
+  display: block;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main section.ng-hide {
+  opacity: 0;
+}
+
+main section.ng-hide-add, main section.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+
+
+main section h2 {
+  font-size: 25px;
+}
+
+#char-num-tips {
+  font-size: 25px;
+}
+
+.btn-change-char {
+
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  
+}
+
+.input-change-char {
+  width: 70px;
+  height: 50px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  min-width: 200px;
+  border: none;
+  background-color: hsl(360, 91%, 36%);
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(0, 0%, 100%);
+  
+  font-size: 22px;
+  line-height: 22px;
+  margin: 16px 16px 16px 20px;
+  padding: 14px 34px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+#char-type-section ul {
+
+  display: inline-block;
+  margin: auto;
+  list-style: none;
+}
+
+
+#char-type-section li {
+
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+
+input[type='checkbox'] {
+
+  transform: scale(2);
+}
+
+#secure-key-div {
+
+  display: block;
+  padding: 50px;
+  max-width: 80%;
+  min-width: 700px;
+  min-height: 160px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 30px;
+  margin: auto;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  user-select: all;
+}
+
+
+
+footer {
+  padding: 20px;
+  text-align: center;
+  bottom: 0px;
+  font-size: 20px;
+}
+
+
+
+
+@media (max-width: 690px) {
+  .btn {
+    font-size: 1rem;
+    margin: 16px 0px 0px 0px;
+    padding: 10px 15px;
+  }
+
+  #password {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .btn {
+    font-size: 0.8rem;
+  }
+}

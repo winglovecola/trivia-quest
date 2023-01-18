@@ -4,31 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Password Generator - Secure Key</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
+  <body ng-app="app" ng-controller="myController">
+
+    <header ng-show="showItem.header">
+      <h1>Password Generator</h1>
+    </header>
+    
+
+    <main id="main">
+      <div ng-show="showItem.keygenHeaderCard" class="card-header">
+        <h2>Generate a secure password base on your preference!</h2>
       </div>
-    </div>
-    <script src="script.js"></script>
+
+      <div ng-show="showItem.keygenBtn" class="generate-btn">
+        <button id="generate" class="btn" ng-click="keygenStart ()">Generate Password</button>
+      </div>
+
+   
+      <section ng-show="showItem.keygenPrefChar" class="keygen-pref-char">
+        <h2>Choose how many character in your password.</h2>
+        <div id="char-num-tips">Min 8 and Max 128 characters</div>
+        <br><br>
+        <button class="btn-change-char" ng-click="kengenCharNumSub ()">-</button> <input type="text" class="input-change-char" ng-model="kengenCharNum" minlength="1" maxlength="3"/> <button class="btn-change-char" ng-click="kengenCharNumAdd ()">+</button>
+        
+        <br><br>
+        <button ng-show="showItem.keygenNextBtn" class="btn" ng-click="keygenPrefChar ()">Next</button>
+      </section>
+
+      <section id="char-type-section" ng-show="showItem.keygenPrefType" class="keygen-pref-type">
+        <h2>Choose what type of characters include in your password.</h2>
+      
+        <ul>
+          <li><input type="checkbox" ng-model="cbKeygenType.lowercase"> Lowercase</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.uppercase"> Uppercase</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.numeric"> Numeric</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.specialChar"> Special Characters</li>
+        </ul>
+
+        <br><br>
+        
+        <button class="btn" ng-click="keygenConfirm ()">{{btns.keygenConfirmBtn}}</button>
+      </section>
+
+      <section class="keygen-display" ng-show="showItem.keygenSecureKeyDisplay">
+
+
+        <div id="secure-key-div">{{secureKey}}</div>
+     
+      
+      </section>
+    </main>
+
+    <footer>
+      Thank you for using!
+    </footer>
+
+    <script src="./assets/js/angular.min.js"></script>
+    <script src="./assets/js/angular-animate.min.js"></script>
+
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
