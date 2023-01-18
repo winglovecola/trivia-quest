@@ -49,7 +49,7 @@
       <!-- choose password character type -->
       <section id="char-type-section" ng-show="showItem.keygenPrefType" class="keygen-pref-type">
         <h2>Choose what type of characters are in your password.</h2>
-      
+        <div class="warning" ng-show="showItem.keygenPrefTypeWarning">At least one type has to be selected</div>
         <ul>
           <li><input type="checkbox" ng-model="cbKeygenType.lowercase">&nbsp;&nbsp;&nbsp;Lowercase</li>
           <li><input type="checkbox" ng-model="cbKeygenType.uppercase">&nbsp;&nbsp;&nbsp;Uppercase</li>

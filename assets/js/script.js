@@ -31,6 +31,7 @@ var myapp = angular.module("app", ['ngAnimate']);
       keygenBtn: true,
       keygenPrefChar: false,
       keygenPrefType: false,
+      keygenPrefTypeWarning: false,
       keygenHeaderCard: true,
       keygenNextBtn: true,
       keygenSecureKeyDisplay: false
@@ -93,11 +94,14 @@ var myapp = angular.module("app", ['ngAnimate']);
 
     $scope.keygenConfirm = function () {
 
-      $scope.showItem.keygenSecureKeyDisplay = true;
       
       
       let charTypeArray = [];
       let totalType = 0;
+      
+      
+
+
 
 
       //when number of character has not specify, set the value to 8 characters
@@ -140,95 +144,109 @@ var myapp = angular.module("app", ['ngAnimate']);
       }
 
 
+      //check if at least one type is selected
+      if (totalType == 0)
+      {
+        $scope.showItem.keygenSecureKeyDisplay = false;  
+        $scope.showItem.keygenPrefTypeWarning = true;
+      }
+      else
+      {
+        $scope.showItem.keygenPrefTypeWarning = false;
 
-      let typeCharNum = Math.round($scope.kengenCharNum / totalType);
-      let typeCount = 0;
+        let typeCharNum = Math.round($scope.kengenCharNum / totalType);
+        let typeCount = 0;
 
 
-      //generate a random number of character for each selected type
-      charTypeArray.forEach(element => {
+        //generate a random number of character for each selected type
+        charTypeArray.forEach(element => {
+          
+          console.log (typeCount + "==" +  totalType);
+          if (typeCount == totalType - 1) //last item
+          {
+
+            $scope.cbKeygenType[element + "NumChar"] = $scope.kengenCharNumLeft;
+          }
+          else
+          {
+            if ($scope.cbKeygenType[element])
+            {
+              $scope.cbKeygenType[element + "NumChar"] = typeCharPercentageDiff (typeCharNum);
+            }
+      
+            $scope.kengenCharNumLeft = $scope.kengenCharNumLeft - $scope.cbKeygenType[element + "NumChar"];
+          }
+
+          typeCount++;
+        });
         
-        console.log (typeCount + "==" +  totalType);
-        if (typeCount == totalType - 1) //last item
-        {
+        
+        console.log ("kengenCharNum: " + $scope.kengenCharNum);
+        console.log ("totalType: " + totalType);
+        console.log ($scope.cbKeygenType);
 
-          $scope.cbKeygenType[element + "NumChar"] = $scope.kengenCharNumLeft;
-        }
-        else
-        {
-          if ($scope.cbKeygenType[element])
+
+        //populate character in an array base on the $scope.cbKeygenType.lowercaseNumChar, $scope.cbKeygenType.uppercaseNumChar, $scope.cbKeygenType.numberNumChar, $scope.cbKeygenType.specialCharNumChar 
+        let passwordArray = [];
+        let aRandomChar = "";
+        charTypeArray.forEach(element => {
+
+          if (element == "lowercase")
           {
-            $scope.cbKeygenType[element + "NumChar"] = typeCharPercentageDiff (typeCharNum);
+            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+            {
+              //generate lowercase base on ASCII table
+              aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 26) ); //ascii lowercase start at ord 97 and has 26 characters
+              passwordArray.unshift(aRandomChar);
+            }
           }
-    
-          $scope.kengenCharNumLeft = $scope.kengenCharNumLeft - $scope.cbKeygenType[element + "NumChar"];
-        }
-
-        typeCount++;
-      });
-      
-      
-      console.log ("kengenCharNum: " + $scope.kengenCharNum);
-      console.log ("totalType: " + totalType);
-      console.log ($scope.cbKeygenType);
-
-
-      //populate character in an array base on the $scope.cbKeygenType.lowercaseNumChar, $scope.cbKeygenType.uppercaseNumChar, $scope.cbKeygenType.numberNumChar, $scope.cbKeygenType.specialCharNumChar 
-      let passwordArray = [];
-      let aRandomChar = "";
-      charTypeArray.forEach(element => {
-
-        if (element == "lowercase")
-        {
-          for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+          else if (element == "uppercase")
           {
-            //generate lowercase base on ASCII table
-            aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 26) ); //ascii lowercase start at ord 97 and has 26 characters
-            passwordArray.unshift(aRandomChar);
+            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+            {
+              //generate uppercase base on ASCII table
+              aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 26) ); //ascii uppercase start at ord 65 and has 26 characters
+              passwordArray.unshift(aRandomChar);
+            }
           }
-        }
-        else if (element == "uppercase")
-        {
-          for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+          else if (element == "numeric")
           {
-            //generate uppercase base on ASCII table
-            aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 26) ); //ascii uppercase start at ord 65 and has 26 characters
-            passwordArray.unshift(aRandomChar);
+            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+            {
+              //generate number base on ASCII table
+              aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 10) ); //ascii symbol start at ord 48 and has 9 mumber
+              passwordArray.unshift(aRandomChar);
+            }
           }
-        }
-        else if (element == "numeric")
-        {
-          for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+          else if (element == "specialChar")
           {
-            //generate number base on ASCII table
-            aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 10) ); //ascii symbol start at ord 48 and has 9 mumber
-            passwordArray.unshift(aRandomChar);
+            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
+            {
+              //generate number base on ASCII table
+              aRandomChar = String.fromCharCode( 33 + getRandomArbitrary(0, 15) ); //ascii symbol start at ord 33 and has 15 symbols
+              passwordArray.unshift(aRandomChar);
+            }
           }
-        }
-        else if (element == "specialChar")
-        {
-          for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
-          {
-            //generate number base on ASCII table
-            aRandomChar = String.fromCharCode( 33 + getRandomArbitrary(0, 15) ); //ascii symbol start at ord 33 and has 15 symbols
-            passwordArray.unshift(aRandomChar);
-          }
-        }
 
+          console.log (passwordArray);
+
+
+          //change button text
+          $scope.btns.keygenConfirmBtn = "Re-generate";
+        });
+
+        //shuffle the characters in the passwordArray to create a random password
+        shuffle (passwordArray);
         console.log (passwordArray);
 
+        $scope.secureKey = passwordArray.join("");
 
-        //change button text
-        $scope.btns.keygenConfirmBtn = "Re-generate";
-      });
+        console.log ($scope.secureKey);
 
-      //shuffle the characters in the passwordArray to create a random password
-      shuffle (passwordArray);
-      console.log (passwordArray);
 
-      $scope.secureKey = passwordArray.join("");
-
-      console.log ($scope.secureKey);
+        $scope.showItem.keygenSecureKeyDisplay = true;
+      
+      }
     }
 
 

@@ -129,6 +129,11 @@ input[type='checkbox'] {
   transform: scale(2);
 }
 
+.warning {
+  font-size: 25px;
+  color: red;
+}
+
 
 /* password display section */
 #secure-key-div {
