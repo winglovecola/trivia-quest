@@ -7,12 +7,13 @@ Secure Key is a rich option and secure password generator. It allow user to sele
 
 ## Live Site
 
-https://winglovecola.github.io/js-password-generator
+https://winglovecola.github.io/secure-key
 
 ## Preview
 
-![Website screenshot]()
+![Website screenshot 1](https://github.com/winglovecola/secure-key/blob/main/assets/images/screenshot1.jpg?raw=true)
 
+![Website screenshot 2](https://github.com/winglovecola/secure-key/blob/main/assets/images/screenshot2.jpg?raw=true)
 
 ## License
 
