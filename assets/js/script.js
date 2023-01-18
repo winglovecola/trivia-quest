@@ -99,13 +99,13 @@ var myapp = angular.module("app", ['ngAnimate']);
       let charTypeArray = [];
       let totalType = 0;
       
+
+
       
-
-
-
-
       //when number of character has not specify, set the value to 8 characters
       if ($scope.kengenCharNum == "")
+        $scope.kengenCharNum = "8";
+      else if ($scope.kengenCharNum < 8)
         $scope.kengenCharNum = "8";
       else if ($scope.kengenCharNum > 128)
         $scope.kengenCharNum = "128";
