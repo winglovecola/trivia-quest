@@ -183,7 +183,7 @@ var myapp = angular.module("app", ['ngAnimate']);
           for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
           {
             //generate lowercase base on ASCII table
-            aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 24) ); //ascii lowercase start at ord 97 and has 24 characters
+            aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 26) ); //ascii lowercase start at ord 97 and has 26 characters
             passwordArray.unshift(aRandomChar);
           }
         }
@@ -192,7 +192,7 @@ var myapp = angular.module("app", ['ngAnimate']);
           for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
           {
             //generate uppercase base on ASCII table
-            aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 24) ); //ascii uppercase start at ord 65 and has 24 characters
+            aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 26) ); //ascii uppercase start at ord 65 and has 26 characters
             passwordArray.unshift(aRandomChar);
           }
         }
@@ -201,7 +201,7 @@ var myapp = angular.module("app", ['ngAnimate']);
           for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
           {
             //generate number base on ASCII table
-            aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 9) ); //ascii symbol start at ord 48 and has 9 mumber
+            aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 10) ); //ascii symbol start at ord 48 and has 9 mumber
             passwordArray.unshift(aRandomChar);
           }
         }
