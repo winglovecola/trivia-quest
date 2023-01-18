@@ -161,7 +161,7 @@ var myapp = angular.module("app", ['ngAnimate']);
         //generate a random number of character for each selected type
         charTypeArray.forEach(element => {
           
-          console.log (typeCount + "==" +  totalType);
+          //console.log (typeCount + "==" +  totalType);
           if (typeCount == totalType - 1) //last item
           {
 
@@ -181,9 +181,9 @@ var myapp = angular.module("app", ['ngAnimate']);
         });
         
         
-        console.log ("kengenCharNum: " + $scope.kengenCharNum);
-        console.log ("totalType: " + totalType);
-        console.log ($scope.cbKeygenType);
+        //console.log ("kengenCharNum: " + $scope.kengenCharNum);
+        //console.log ("totalType: " + totalType);
+        //console.log ($scope.cbKeygenType);
 
 
         //populate character in an array base on the $scope.cbKeygenType.lowercaseNumChar, $scope.cbKeygenType.uppercaseNumChar, $scope.cbKeygenType.numberNumChar, $scope.cbKeygenType.specialCharNumChar 
@@ -228,7 +228,7 @@ var myapp = angular.module("app", ['ngAnimate']);
             }
           }
 
-          console.log (passwordArray);
+          //console.log (passwordArray);
 
 
           //change button text
@@ -237,11 +237,11 @@ var myapp = angular.module("app", ['ngAnimate']);
 
         //shuffle the characters in the passwordArray to create a random password
         shuffle (passwordArray);
-        console.log (passwordArray);
+        //console.log (passwordArray);
 
         $scope.secureKey = passwordArray.join("");
 
-        console.log ($scope.secureKey);
+        //console.log ($scope.secureKey);
 
 
         $scope.showItem.keygenSecureKeyDisplay = true;
