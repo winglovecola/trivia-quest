@@ -1,18 +1,6 @@
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-
 //generate password base on user preference
 
-
-// Assignment code here
+//start angular
 var myapp = angular.module("app", ['ngAnimate']);
   myapp.controller("myController", function($scope) {
 
