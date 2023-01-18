@@ -3,7 +3,7 @@
   <head>
 
     <title>Password Generator - Secure Key</title>
-    
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -28,7 +28,7 @@
 
    
       <section ng-show="showItem.keygenPrefChar" class="keygen-pref-char">
-        <h2>Choose how many character in your password.</h2>
+        <h2>Choose how many characters for your password.</h2>
         <div id="char-num-tips">Min 8 and Max 128 characters</div>
         <br><br>
         <button class="btn-change-char" ng-click="kengenCharNumSub ()">-</button> <input type="text" class="input-change-char" ng-model="kengenCharNum" minlength="1" maxlength="3"/> <button class="btn-change-char" ng-click="kengenCharNumAdd ()">+</button>
@@ -41,10 +41,10 @@
         <h2>Choose what type of characters include in your password.</h2>
       
         <ul>
-          <li><input type="checkbox" ng-model="cbKeygenType.lowercase"> Lowercase</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.uppercase"> Uppercase</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.numeric"> Numeric</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.specialChar"> Special Characters</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.lowercase">&nbsp;&nbsp;&nbsp;Lowercase</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.uppercase">&nbsp;&nbsp;&nbsp;Uppercase</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.numeric">&nbsp;&nbsp;&nbsp;Numeric</li>
+          <li><input type="checkbox" ng-model="cbKeygenType.specialChar">&nbsp;&nbsp;&nbsp;Special Characters</li>
         </ul>
 
         <br><br>
