@@ -1,4 +1,4 @@
-
+/* header font */
 h1 {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 45px;
@@ -6,12 +6,14 @@ h1 {
   margin-bottom: 10px;
 }
 
-
 h2 {
   font-size: 25px;
   margin-bottom: 10px;
 }
 
+
+
+/* header section */
 header {
   display: block;
   font-family: 'Courier New', Courier, monospace;
@@ -30,12 +32,15 @@ header.ng-hide-add, header.ng-hide-remove {
   transition: all linear 0.5s;
 }
 
+
+
+
+/* main section */
 main {
 
   display: block;
   min-height: 700px;
 }
-
 
 main section, main div {
   display: block;
@@ -52,16 +57,19 @@ main section.ng-hide-add, main section.ng-hide-remove {
   transition: all linear 0.5s;
 }
 
-
-
 main section h2 {
   font-size: 25px;
 }
+
 
 #char-num-tips {
   font-size: 25px;
 }
 
+
+
+
+/* choose password character length */
 .btn-change-char {
 
   display: inline-block;
@@ -97,6 +105,10 @@ main section h2 {
 
 }
 
+
+
+
+/* choose password character type */
 #char-type-section ul {
 
   display: inline-block;
@@ -114,28 +126,29 @@ main section h2 {
 }
 
 input[type='checkbox'] {
-
   transform: scale(2);
 }
 
+
+/* password display section */
 #secure-key-div {
 
   display: block;
-  padding: 50px;
   max-width: 80%;
   min-width: 700px;
   min-height: 160px;
   border: 1px solid black;
   border-radius: 10px;
-  font-size: 30px;
-  margin: auto;
   box-sizing: border-box;
+  font-size: 30px;
+  padding: 50px;
+  margin: auto;
   word-wrap: break-word;
   user-select: all;
 }
 
 
-
+/* footer section */
 footer {
   padding: 20px;
   text-align: center;
@@ -147,19 +160,12 @@ footer {
 
 
 @media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
-  }
+  #secure-key-div {
 
-  #password {
-    font-size: 1rem;
+    max-width: 100%;
+    min-width: 400px;
   }
+  
 }
 
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
-}
+
