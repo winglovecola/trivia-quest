@@ -52,7 +52,7 @@ var myapp = angular.module("app", ['ngAnimate']);
       if ($scope.kengenCharNum >= 128)
         $scope.kengenCharNum = 128;
       else
-        $scope.kengenCharNum = $scope.kengenCharNum + 1;
+        $scope.kengenCharNum = parseInt ($scope.kengenCharNum) + 1; 
     }
 
 
@@ -71,9 +71,9 @@ var myapp = angular.module("app", ['ngAnimate']);
 
       //when number of character has not specify, set the value to 8 characters
       if ($scope.kengenCharNum == "")
-        $scope.kengenCharNum = "8";
+        $scope.kengenCharNum = 8;
       else if ($scope.kengenCharNum > 128)
-        $scope.kengenCharNum = "128";     
+        $scope.kengenCharNum = 128;     
     
     }
 
@@ -85,11 +85,11 @@ var myapp = angular.module("app", ['ngAnimate']);
    
       //when number of character has not specify, set the value to 8 characters
       if ($scope.kengenCharNum == "")
-        $scope.kengenCharNum = "8";
+        $scope.kengenCharNum = 8;
       else if ($scope.kengenCharNum < 8)
-        $scope.kengenCharNum = "8";
+        $scope.kengenCharNum = 8;
       else if ($scope.kengenCharNum > 128)
-        $scope.kengenCharNum = "128";
+        $scope.kengenCharNum = 128;
            
 
       $scope.kengenCharNumLeft = $scope.kengenCharNum;
