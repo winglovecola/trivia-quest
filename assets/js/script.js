@@ -40,7 +40,7 @@ var myapp = angular.module("app", ['ngAnimate']);
     };
 
 
-    
+    //make sure the number of length is limited to 8 to 128
     $scope.kengenCharNumSub = function () {
       if ($scope.kengenCharNum <= 8)
         $scope.kengenCharNum = 8;
@@ -54,6 +54,8 @@ var myapp = angular.module("app", ['ngAnimate']);
       else
         $scope.kengenCharNum = parseInt ($scope.kengenCharNum) + 1; 
     }
+
+
 
 
     $scope.keygenStart = function () {
