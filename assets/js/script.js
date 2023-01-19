@@ -176,7 +176,7 @@ var myapp = angular.module("app", ['ngAnimate']);
             for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
             {
               //generate lowercase base on ASCII table
-              aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 26) ); //ascii lowercase start at ord 97 and has 26 characters
+              aRandomChar = String.fromCharCode( 97 + Math.round (getRandomArbitrary(0, 25)) ); //ascii lowercase start at ord 97 and has 26 characters
               passwordArray.unshift(aRandomChar);
             }
           }
@@ -185,7 +185,7 @@ var myapp = angular.module("app", ['ngAnimate']);
             for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
             {
               //generate uppercase base on ASCII table
-              aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 26) ); //ascii uppercase start at ord 65 and has 26 characters
+              aRandomChar = String.fromCharCode( 65 + Math.round (getRandomArbitrary(0, 25)) ); //ascii uppercase start at ord 65 and has 26 characters
               passwordArray.unshift(aRandomChar);
             }
           }
@@ -194,7 +194,9 @@ var myapp = angular.module("app", ['ngAnimate']);
             for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
             {
               //generate number base on ASCII table
-              aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 10) ); //ascii symbol start at ord 48 and has 9 mumber
+
+              //console.log ("getRandomArbitrary: " + Math.round (getRandomArbitrary(0, 10)))
+              aRandomChar = String.fromCharCode( 48 + Math.round (getRandomArbitrary(0, 9)) ); //ascii symbol start at ord 48 and has 9 mumber
               passwordArray.unshift(aRandomChar);
             }
           }
@@ -203,7 +205,7 @@ var myapp = angular.module("app", ['ngAnimate']);
             for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
             {
               //generate number base on ASCII table
-              aRandomChar = String.fromCharCode( 33 + getRandomArbitrary(0, 15) ); //ascii symbol start at ord 33 and has 15 symbols
+              aRandomChar = String.fromCharCode( 33 + Math.round (getRandomArbitrary(0, 14)) ); //ascii symbol start at ord 33 and has 15 symbols
               passwordArray.unshift(aRandomChar);
             }
           }
@@ -250,8 +252,8 @@ function typeCharPercentageDiff (typeCharNum) {
   //console.log ("typeCharNum: "  +typeCharNum)   
   if (percentageDifference > 0)
   {
-    charDifference = getRandomArbitrary(0, percentageDifference);
-    charDifference = Math.round(charDifference);
+    charDifference = Math.round(getRandomArbitrary(0, percentageDifference));
+
     if (getRandomArbitrary(0, 1))
       charDifference = charDifference * -1;
   }
