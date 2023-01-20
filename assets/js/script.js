@@ -257,7 +257,7 @@ console.log ("testtest: " + scoreData);
     for (let i = sortedHighScore.length - 1; i >= 0; i--) {
       
       thisScoreData = sortedHighScore[i][1];
-      highScoreHtml += "<li><div class='li-score'>" + thisScoreData.score + "</div><div class='li-score'> " + thisScoreData.name + "</li>";
+      highScoreHtml += "<li><div id='li-score' class='li-score'>" + thisScoreData.score + "</div><div class='li-score'> " + thisScoreData.name + "</li>";
     }
 
     return "<ul>" + highScoreHtml + "</ul>";
