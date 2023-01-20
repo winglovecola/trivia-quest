@@ -1,6 +1,6 @@
 
 
-let timer = 75; 
+let timer; 
 let penalityTimeDeduction = 10; //10 sec
 let finalScore = 0;
 
@@ -172,6 +172,11 @@ function answer (answerPick) {
 
 
     timer = timer - penalityTimeDeduction;
+    if (timer < 0)
+    {
+      timer = 0;
+    }
+
     updateTimer (); 
   }
 
@@ -202,7 +207,7 @@ function gameover () {
   //hide quiz section
   document.querySelector("#quiz-section").style.display = 'none';
 
-  //hide score section
+  //show score section
   document.querySelector("#score-submit-section").style.display = 'block';
   document.querySelector("#score-section").style.display = 'block';
 
@@ -231,7 +236,7 @@ function gameover () {
 function highScoreHtml () {
 
   //sort high score data
-
+console.log ("testtest: " + scoreData);
   if (scoreData)
   {
     let sortedHighScore = [];
@@ -293,7 +298,7 @@ function scoreSave () {
 
     document.querySelector("#score-submit-section").style.display = 'none';
 
-    document.querySelector("#score-section").style.display = 'block';
+    
 
     document.getElementById("name").value = '';
     
