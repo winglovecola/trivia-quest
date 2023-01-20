@@ -6,6 +6,9 @@ let finalScore = 0;
 
 let scoreDataRaw = localStorage.getItem("score");
 let scoreData = {};
+let timerIimeout;
+let timerInterval;
+
 
 
 if (scoreDataRaw)
@@ -70,7 +73,7 @@ function questStart () {
   updateTimer ();
 
 
-  var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
 
     if(timer <= 0) {
       //end the game when time is up
@@ -95,11 +98,12 @@ function questStart () {
 
 //start question or next question
 function questionShow () {
-
   
-
-  //update result div
-  document.querySelector("#result").innerHTML = "";
+  if (document.querySelector("#result").innerHTML != "")
+  {
+    //update result div
+    document.querySelector("#result").innerHTML = "";
+  }
 
   thisQuestionData = questionData["q" + currentQuestion];
 
@@ -124,7 +128,7 @@ function questionShow () {
       {
         document.querySelector("#ac" + i).style.display = 'block';
 
-        document.querySelector("#ac" + i).innerHTML = thisQuestionData.answerChoice[i];
+        document.querySelector("#ac" + i).innerHTML = (i + 1) + ". " + thisQuestionData.answerChoice[i];
       }
 
     }
@@ -136,8 +140,8 @@ function questionShow () {
   {
     //game ended and display final score
     //console.log ('quest ended');
-
     gameover ();
+    
   }
 
   //move to next question
@@ -153,24 +157,30 @@ function answer (answerPick) {
   console.log (answerPick);
 
   console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
+
+  clearTimeout (timerIimeout);
+
   if (thisQuestionData.answerChoice[answerPick] == thisQuestionData.answer)
   {
     //correct answer 
-    document.querySelector("#result").innerHTML = "CORRECT!";
+    document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-happy.png'> CORRECT!";
   }
   else
   {
     //incorrect answer 
-    document.querySelector("#result").innerHTML = "WRONG!";
+    document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-sad.png'> WRONG!";
 
 
     timer = timer - penalityTimeDeduction;
     updateTimer (); 
   }
 
+  var timerIimeout = setTimeout(function() {
 
+    questionShow ();
 
-  questionShow ();
+  }, 700);
+  
 }
 
 
@@ -185,6 +195,10 @@ function restart () {
 
 //end game and display score
 function gameover () {
+  
+  //clear interval 
+  clearInterval (timerInterval);
+  
   //hide quiz section
   document.querySelector("#quiz-section").style.display = 'none';
 
@@ -204,9 +218,6 @@ function gameover () {
   {
     console.log (scoreDataRaw);
     
-    
-
-
     document.querySelector("#high-score-div").innerHTML = highScoreHtml ();
   }
   else
@@ -241,7 +252,7 @@ function highScoreHtml () {
     for (let i = sortedHighScore.length - 1; i >= 0; i--) {
       
       thisScoreData = sortedHighScore[i][1];
-      highScoreHtml += "<div class='li-score'>" + thisScoreData.score + "</div><div class='li-name'> " + thisScoreData.name + "</li>";
+      highScoreHtml += "<li><div class='li-score'>" + thisScoreData.score + "</div><div class='li-score'> " + thisScoreData.name + "</li>";
     }
 
     return "<ul>" + highScoreHtml + "</ul>";
@@ -284,6 +295,8 @@ function scoreSave () {
 
     document.querySelector("#score-section").style.display = 'block';
 
+    document.getElementById("name").value = '';
+    
   }
   else
   {
@@ -299,6 +312,8 @@ function scoreSave () {
 function scoreRemove () {
 
   localStorage.removeItem('score');
+  scoreData = {};
+
   document.querySelector("#high-score-div").innerHTML = "High score list has been reset";
 }
 

@@ -1,13 +1,16 @@
 /* header font */
+
 h1 {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 45px;
+  font-family:"Caveat Brush";
+  font-size: 70px;
   margin-top: 10px;
   margin-bottom: 10px;
+  
 }
 
 h2 {
-  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
   margin-bottom: 10px;
 }
 
@@ -16,89 +19,158 @@ h2 {
 /* header section */
 header {
   display: block;
-  font-family: 'Courier New', Courier, monospace;
+  
   text-align: center;
-  background-color: black;
+  background-color: rgb(55, 37, 116);
   color: white;
   padding: 10px;
   margin-bottom: 30px;
 }
 
-header.ng-hide {
-  opacity: 0;
+#intro-section {
+
+  display: block;
+  max-width: 80%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
 }
 
-header.ng-hide-add, header.ng-hide-remove {
-  transition: all linear 0.5s;
+
+#quiz-section {
+
+  display: none;
+  max-width: 80%;
+  padding: 20px;
+  padding-top: 0px;
+  margin: auto;
+  margin-top: 90px;
+  text-align: center;
 }
 
 
+#timer {
+
+  display: block;
+  position: absolute;
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 0px;
+  text-align: center;
+  top: 100px;
+  right: 0px;
+  font-size: 60px;
+  font-family:"Caveat Brush";
+  font-weight: bold;
+
+}
+
+#question-div {
+
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 700px;
+  padding: 20px;
+  padding-top: 0px;
+  padding-left: 100px;
+  margin: auto;
+  text-align: left;
+
+}
+
+
+#question {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+#result {
+
+  display: block;
+  width: 100%;
+  height: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  padding: 0px;
+  margin-top: 0px;
+
+  
+}
+
+#result img {
+
+  width: 100px;
+  border: 0px;
+  vertical-align: middle;
+}
+
+#answers {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.answer-choice {
+
+  display: block;
+  width: 300px;
+  min-width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-left: 20px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.answer-choice:hover {
+
+  background-color: rgb(55, 37, 116);
+  color: white;
+  cursor: pointer;
+}
+
+
+
+#score-submit-section {
+
+  display: none;
+  max-width: 80%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+#score-section {
+
+  display: none;
+  max-width: 80%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+}
 
 
 /* main section */
-main {
 
-  display: block;
-  min-height: 700px;
-}
-
-main section, main div {
-  display: block;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 20px;
-}
-
-main section.ng-hide {
-  opacity: 0;
-}
-
-main section.ng-hide-add, main section.ng-hide-remove {
-  transition: all linear 0.5s;
-}
-
-main section h2 {
-  font-size: 25px;
-}
-
-
-#char-num-tips {
-  font-size: 25px;
-}
-
-
-
-
-/* choose password character length */
-.btn-change-char {
-
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  font-size: 25px;
-  
-}
-
-.input-change-char {
-  width: 70px;
-  height: 50px;
-  font-size: 25px;
-  text-align: center;
-}
 
 .btn {
-  display: inline-block;
-  min-width: 200px;
-  border: none;
-  background-color: rgb(185, 51, 51);
-  border: 1px solid rgb(167, 49, 49);
-  border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
-  color: hsl(0, 0%, 100%);
   
-  font-size: 22px;
-  line-height: 22px;
+  display: inline-block;
+  min-width: 220px;
+  border: none;
+  background-color: rgb(76, 60, 163);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 30px;
+  color: hsl(0, 0%, 100%);
+  font-family:"Caveat Brush";
+  font-size: 30px;
   margin: 16px 16px 16px 20px;
   padding: 14px 34px;
   text-align: center;
@@ -110,55 +182,103 @@ main section h2 {
   background-color: rgb(204, 62, 62);
 }
 
-
-
-/* choose password character type */
-#char-type-section ul {
-
-  display: inline-block;
+#score-submit-section {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 700px;
+  padding: 20px;
+  padding-top: 0px;
+  padding-left: 100px;
   margin: auto;
-  list-style: none;
+  text-align: center;
+}
+
+#final-score-title {
+
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 
-#char-type-section li {
+#final-score {
 
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+#submit-score {
+
+  font-size: 30px;
+}
+
+#submit-score input, #score-section input {
+  min-width: 150px;
   padding: 10px;
-  font-size: 16px;
+  border-radius: 10px;
+}
+
+#submit-score input[type='button']:hover, #score-section input[type='button']:hover {
+
+  background-color: rgb(76, 60, 163);
+  color: white;
+}
+
+
+#high-score-div {
+
+  margin-top: 5px;
+  
+}
+
+#high-score-div-title {
+
+  width: 100%;
+  font-size: 25px;
   font-weight: bold;
+}
+
+#high-score-div ul {
+  
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  list-style: none;
+  margin: auto;
+}
+
+#high-score-div li:nth-child(even) {
+  background-color: rgb(207, 207, 207);
+}
+
+#high-score-div li {
+  padding: 10px;
   text-align: left;
 }
 
-input[type='checkbox'] {
-  transform: scale(2);
+#high-score-div .li-score {
+
+  display: inline;
+  padding: 10px;
+  text-align: left;
 }
 
-.warning {
-  font-size: 25px;
+
+
+#score-submit-tip {
+
   color: red;
+  margin-top: 10px;
 }
 
-
-/* password display section */
-#secure-key-div {
-
-  display: block;
-  max-width: 80%;
-  min-width: 700px;
-  min-height: 160px;
-  border: 1px solid black;
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-size: 30px;
-  padding: 50px;
-  margin: auto;
-  word-wrap: break-word;
-  user-select: all;
-}
 
 
 /* footer section */
 footer {
+  display: block;
+  position: absolute;
+  width: 100%;
   padding: 20px;
   text-align: center;
   bottom: 0px;
@@ -169,10 +289,22 @@ footer {
 
 
 @media (max-width: 690px) {
-  #secure-key-div {
+  #question-div {
+    padding-left: 10px;
 
-    max-width: 100%;
-    min-width: 400px;
+  }
+
+  #question {
+
+    font-size: 30px;
+  }
+
+  .answer-choice {
+
+    display: block;
+    width: 300px;
+    min-width: 250px;
+    padding: 10px;
   }
   
 }

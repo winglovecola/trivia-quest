@@ -6,6 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
@@ -24,7 +28,10 @@
       
       <!-- intro section -->
       <section id="intro-section" class="intro-section">
-        <h2>Press start when you are ready to begin this coding quiz challenge. Your high score will be calculate base on your time. The faster you complete the quest, the higher your score. Incorrect answers will be penalize your time/score by 10 seconds</h2>
+        <h2>Press start when you are ready to begin this coding quiz challenge.
+          
+          <br><br>Your high score will be calculate base on your time. The faster you complete the quest, the higher your score.
+          <br>Incorrect answers will be penalize your time/score by 10 seconds</h2>
 
 
         <div class="start-btn">
@@ -38,23 +45,34 @@
       <section id="quiz-section">
 
         <div id="timer"></div>
-        <div id="question"></div>
-        <div id="answers">
-          <div id="ac0" class="answer-choice" onclick="answer (0)">test1</div>
-          <div id="ac1" class="answer-choice" onclick="answer (1)">test2</div>
-          <div id="ac2" class="answer-choice" onclick="answer (2)">test3</div>
-          <div id="ac3" class="answer-choice" onclick="answer (3)">test4</div>
+
+        <div id="question-div">
+          <div id="result"></div>  
+          <div id="question"></div>
+          
+          <div id="answers">
+            
+            <div id="ac0" class="answer-choice" onclick="answer (0)">test1</div>
+            <div id="ac1" class="answer-choice" onclick="answer (1)">test2</div>
+            <div id="ac2" class="answer-choice" onclick="answer (2)">test3</div>
+            <div id="ac3" class="answer-choice" onclick="answer (3)">test4</div>
+          </div>
+
+          
         </div>
 
-        <div id="result"></div>  
+        
+        
       </section>
 
 
       <!-- score section -->
       
       <section id="score-submit-section">  
+        <div id="final-score-title">Quest Done!</div>
         <div id="final-score"></div>
         <div id="submit-score">
+            <h2>Submit your score:</h2>
             Your Name: <input type="text" id="name" name="name"> <input type="button" value="Submit" onclick="scoreSave ()">  
             <div id="score-submit-tip"></div> 
         </div>
@@ -64,9 +82,15 @@
 
       <section id="score-section">  
         <div id="high-score-option"> <input type="button" value="Play Again" onclick="restart ()"> <input type="button" value="Clear high scores" onclick="scoreRemove ()"></div>
+
+        <br><br>
+        
+        <div id="high-score-div-title">TOP SCORE: </div>
         <div id="high-score-div"></div>
-     
       </section>
+      
+
+
     </main>
 
 
