@@ -1,302 +1,304 @@
 
-//start angularjs
-var myapp = angular.module("app", ['ngAnimate']);
-  myapp.controller("myController", function($scope) {
+
+let timer = 75; 
+let penalityTimeDeduction = 10; //10 sec
+let finalScore = 0;
+
+let scoreDataRaw = localStorage.getItem("score");
+let scoreData = {};
 
 
-    $scope.secureKey = "";
-    $scope.kengenCharNum = 20;
-    
-    
-    $scope.btns = {
-      keygenConfirmBtn: "Confirm",
-    };
+if (scoreDataRaw)
+  scoreData = JSON.parse( scoreDataRaw );
 
 
-    $scope.showItem = {
-      header: true,
-      keygenBtn: true,
-      keygenPrefChar: false,
-      keygenPrefType: false,
-      keygenPrefTypeWarning: false,
-      keygenHeaderCard: true,
-      keygenNextBtn: true,
-      keygenSecureKeyDisplay: false
-    };
+//begin with question 1
+let currentQuestion = 1; 
 
 
-    $scope.cbKeygenType = {
-      lowercase: true,
-      lowercaseNumChar: 0,
+let thisQuestionData = {};
 
-      uppercase: true,
-      uppercaseNumChar: 0,
 
-      numeric: true,
-      numericNumChar: 0,
+//set up all the questions and answers
+let questionData = {
+  q1: {
+    question: "Common used data types DO not include:",
+    answerChoice: ["strings", "boolean", "alerts", "numbers"], //max 4 choices
+    answer: "alerts"
+  },
+
+  q2: {
+    question: "JavaScript is only used in front-end web development.",
+    answerChoice: ["true", "false"],
+    answer: "false"
+  }
+}
+
+
+
+
+
+
+function updateTimer () {
+
+  //update timer in display
+  document.querySelector("#timer").innerHTML = "Time: " + timer;
+}
+
+
+
+
+function questStart () {
+  
+  //start question 1;
+  currentQuestion = 1; 
+
+  timer = 75; 
+  finalScore = 0;
+
+
+  document.querySelector("#intro-section").style.display = 'none';
+  document.querySelector("#quiz-section").style.display = 'block';
+
+
+  //question show
+  questionShow ();
+
+
+
+  //display initial timer on page
+  updateTimer ();
+
+
+  var timerInterval = setInterval(function() {
+
+    if(timer <= 0) {
+      //end the game when time is up
       
-      specialChar: true,
-      specialCharNumChar: 0
-    };
+      clearInterval(timerInterval);
+      gameover ();
 
-
-    //make sure the number of length is limited to 8 to 128
-    $scope.kengenCharNumSub = function () {
-      if ($scope.kengenCharNum <= 8)
-        $scope.kengenCharNum = 8;
-      else
-        $scope.kengenCharNum = $scope.kengenCharNum - 1;
     }
-
-    $scope.kengenCharNumAdd = function () {
-      if ($scope.kengenCharNum >= 128)
-        $scope.kengenCharNum = 128;
-      else
-        $scope.kengenCharNum = parseInt ($scope.kengenCharNum) + 1; 
+    else
+    {
+      updateTimer (); 
     }
+ 
+
+    timer--;
+
+  }, 1000);
+}
 
 
 
 
-    $scope.keygenStart = function () {
-      $scope.showItem.keygenBtn = false;
-      $scope.showItem.keygenPrefChar = true;
-      $scope.showItem.keygenHeaderCard = false;
-      $scope.showItem.header = false;
-      
-    }
-
-    $scope.keygenPrefChar = function () {
-
-      $scope.showItem.keygenPrefType = true;
-      $scope.showItem.keygenNextBtn = false;
-
-      //when number of character has not specify, set the value to 8 characters
-      if ($scope.kengenCharNum == "")
-        $scope.kengenCharNum = 8;
-      else if ($scope.kengenCharNum > 128)
-        $scope.kengenCharNum = 128;     
-    
-    }
-
-    $scope.keygenConfirm = function () {
-     
-      let charTypeArray = [];
-      let totalType = 0;
-      
-   
-      //when number of character has not specify, set the value to 8 characters
-      if ($scope.kengenCharNum == "")
-        $scope.kengenCharNum = 8;
-      else if ($scope.kengenCharNum < 8)
-        $scope.kengenCharNum = 8;
-      else if ($scope.kengenCharNum > 128)
-        $scope.kengenCharNum = 128;
-           
-
-      $scope.kengenCharNumLeft = $scope.kengenCharNum;
-
-
-      if ($scope.cbKeygenType.lowercase)
-      {
-        totalType++;
-
-        charTypeArray.unshift("lowercase");
-      }
-
-      if ($scope.cbKeygenType.uppercase)
-      {
-        totalType++;
-
-        charTypeArray.unshift("uppercase");
-      }
-
-      if ($scope.cbKeygenType.numeric)
-      {
-        totalType++;
-
-        charTypeArray.unshift("numeric");
-      }
-
-      if ($scope.cbKeygenType.specialChar)
-      {
-        totalType++;
-
-        charTypeArray.unshift("specialChar");
-      }
-
-
-      //check if at least one type is selected
-      if (totalType == 0)
-      {
-        $scope.showItem.keygenSecureKeyDisplay = false;  
-        $scope.showItem.keygenPrefTypeWarning = true;
-      }
-      else
-      {
-        $scope.showItem.keygenPrefTypeWarning = false;
-
-        let typeCharNum = Math.round($scope.kengenCharNum / totalType);
-        let typeCount = 0;
-
-
-        //generate a random number of character for each selected type
-        charTypeArray.forEach(element => {
-          
-          //console.log (typeCount + "==" +  totalType);
-          if (typeCount == totalType - 1) //last item
-          {
-
-            $scope.cbKeygenType[element + "NumChar"] = $scope.kengenCharNumLeft;
-          }
-          else
-          {
-            if ($scope.cbKeygenType[element])
-            {
-              $scope.cbKeygenType[element + "NumChar"] = typeCharPercentageDiff (typeCharNum);
-            }
-      
-            $scope.kengenCharNumLeft = $scope.kengenCharNumLeft - $scope.cbKeygenType[element + "NumChar"];
-          }
-
-          typeCount++;
-        });
-        
-        
-        //console.log ("kengenCharNum: " + $scope.kengenCharNum);
-        //console.log ("totalType: " + totalType);
-        //console.log ($scope.cbKeygenType);
-
-
-        //populate character in an array base on the $scope.cbKeygenType.lowercaseNumChar, $scope.cbKeygenType.uppercaseNumChar, $scope.cbKeygenType.numberNumChar, $scope.cbKeygenType.specialCharNumChar 
-        let passwordArray = [];
-        let aRandomChar = "";
-        charTypeArray.forEach(element => {
-
-          if (element == "lowercase")
-          {
-            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
-            {
-              //generate lowercase base on ASCII table
-              aRandomChar = String.fromCharCode( 97 + getRandomArbitrary(0, 25) ); //ascii lowercase start at ord 97 and has 26 characters
-              passwordArray.unshift(aRandomChar);
-            }
-          }
-          else if (element == "uppercase")
-          {
-            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
-            {
-              //generate uppercase base on ASCII table
-              aRandomChar = String.fromCharCode( 65 + getRandomArbitrary(0, 25) ); //ascii uppercase start at ord 65 and has 26 characters
-              passwordArray.unshift(aRandomChar);
-            }
-          }
-          else if (element == "numeric")
-          {
-            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
-            {
-              //generate number base on ASCII table
-
-        
-              aRandomChar = String.fromCharCode( 48 + getRandomArbitrary(0, 9) ); //ascii symbol start at ord 48 and has 9 mumber
-              passwordArray.unshift(aRandomChar);
-            }
-          }
-          else if (element == "specialChar")
-          {
-            for (let i = 0; i < $scope.cbKeygenType[element + "NumChar"]; i++)
-            {
-              //generate number base on ASCII table
-              aRandomChar = String.fromCharCode( 33 + getRandomArbitrary(0, 14) ); //ascii symbol start at ord 33 and has 15 symbols
-              passwordArray.unshift(aRandomChar);
-            }
-          }
-
-          //console.log (passwordArray);
-
-
-          //change button text
-          $scope.btns.keygenConfirmBtn = "Re-generate";
-        });
-
-        //shuffle the characters in the passwordArray to create a random password
-        shuffle (passwordArray);
-        //console.log (passwordArray);
-
-        $scope.secureKey = passwordArray.join("");
-
-        //console.log ($scope.secureKey);
-
-
-        $scope.showItem.keygenSecureKeyDisplay = true;
-      
-      }
-    }
-
-
-
-
-
-
-});
-
-
-let charDifference = 0;
-
-//create the randomness of the number of character in each type 
-//increase or decrease the typeCharPercentage base on the percentageDiff
-// random from 10% to 20% of character either increase or decresae
-function typeCharPercentageDiff (typeCharNum) {
+//start question or next question
+function questionShow () {
 
   
-  
-  let percentageDifference = Math.round(getRandomArbitrary(10, 20) / 100 * typeCharNum);
-  //console.log ("typeCharNum: "  +typeCharNum)   
-  if (percentageDifference > 0)
+
+  //update result div
+  document.querySelector("#result").innerHTML = "";
+
+  thisQuestionData = questionData["q" + currentQuestion];
+
+  //console.log (thisQuestionData) 
+  if (questionData["q" + currentQuestion])
   {
-    charDifference = getRandomArbitrary(0, percentageDifference);
+   
+    
+    document.querySelector("#question").innerHTML = thisQuestionData.question;
 
-    if (getRandomArbitrary(0, 1))
-      charDifference = charDifference * -1;
+
+    //first hide all answer box
+    document.querySelectorAll('.answer-choice').forEach(function(el) {
+      el.style.display = 'none';
+    });
+
+
+    //show the number of answer box base on the questionData.q1.answerChoice.length
+    for (let i = 0; i < thisQuestionData.answerChoice.length; i++)
+    {
+      if (thisQuestionData.answerChoice[i])
+      {
+        document.querySelector("#ac" + i).style.display = 'block';
+
+        document.querySelector("#ac" + i).innerHTML = thisQuestionData.answerChoice[i];
+      }
+
+    }
+
+
+
   }
   else
   {
-    charDifference = 0;
+    //game ended and display final score
+    //console.log ('quest ended');
+
+    gameover ();
   }
-  //console.log ("test:" + charDifference)  
-  return typeCharNum + charDifference;
+
+  //move to next question
+  currentQuestion++;
+
 }
 
 
 
-//random number functions
-function getRandomArbitrary(min, max) {
-  return Math.round (Math.random() * (max - min) + min);
+
+function answer (answerPick) {
+
+  console.log (answerPick);
+
+  console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
+  if (thisQuestionData.answerChoice[answerPick] == thisQuestionData.answer)
+  {
+    //correct answer 
+    document.querySelector("#result").innerHTML = "CORRECT!";
+  }
+  else
+  {
+    //incorrect answer 
+    document.querySelector("#result").innerHTML = "WRONG!";
+
+
+    timer = timer - penalityTimeDeduction;
+    updateTimer (); 
+  }
+
+
+
+  questionShow ();
 }
 
 
+//restart game
+function restart () {
 
-//shuffle array functions
-function shuffle (t)
-{ let last = t.length
-  let n
-  while (last > 0)
-  { n = rand(last)
-    swap(t, n, --last)
+  document.querySelector("#intro-section").style.display = 'block';
+  document.querySelector("#quiz-section").style.display = 'none';
+  document.querySelector("#score-submit-section").style.display = 'none';
+  document.querySelector("#score-section").style.display = 'none';
+}
+
+//end game and display score
+function gameover () {
+  //hide quiz section
+  document.querySelector("#quiz-section").style.display = 'none';
+
+  //hide score section
+  document.querySelector("#score-submit-section").style.display = 'block';
+  document.querySelector("#score-section").style.display = 'block';
+
+  finalScore = timer;
+
+  document.querySelector("#final-score").innerHTML = "Your final score is " + finalScore + ".";
+  
+
+
+  //load score data from localStorage
+  
+  if (scoreDataRaw)
+  {
+    console.log (scoreDataRaw);
+    
+    
+
+
+    document.querySelector("#high-score-div").innerHTML = highScoreHtml ();
+  }
+  else
+  {
+    document.querySelector("#high-score-div").innerHTML = "No high score yet";
+
   }
 }
 
-const rand = n =>
-  Math.floor(Math.random() * n)
 
-function swap (t, i, j)
-{ let q = t[i]
-  t[i] = t[j]
-  t[j] = q
-  return t
+function highScoreHtml () {
+
+  //sort high score data
+
+  if (scoreData)
+  {
+    let sortedHighScore = [];
+    for (let player in scoreData) {
+      sortedHighScore.push([player, scoreData[player]]);
+    }
+
+    sortedHighScore.sort(function(a, b) {
+    
+      return a[1].score - b[1].score;
+    });
+
+  
+    
+    let highScoreHtml = "";
+    let thisScoreData = {};
+
+    for (let i = sortedHighScore.length - 1; i >= 0; i--) {
+      
+      thisScoreData = sortedHighScore[i][1];
+      highScoreHtml += "<div class='li-score'>" + thisScoreData.score + "</div><div class='li-name'> " + thisScoreData.name + "</li>";
+    }
+
+    return "<ul>" + highScoreHtml + "</ul>";
+
+  }
+  else
+    return "";
 }
 
-//let arrayRandom = [1, 3, 5, 78, 39, 6];
-//shuffle (arrayRandom)
 
-//console.log (arrayRandom);
+
+//save score 
+function scoreSave () {
+
+  let playerName = document.getElementById("name").value;
+
+  console.log (playerName)
+
+  if (playerName && playerName.length > 0) //player name is not empty
+  {
+    
+  
+    let datakey = "hs" + playerName.replace(/[^a-zA-Z0-9]/g, '');
+    
+    scoreData[datakey] = {name: playerName, score: finalScore};
+
+
+    
+
+
+
+    //save to local storage in browser
+    //console.log (JSON.stringify(scoreData));
+    localStorage.setItem("score", JSON.stringify(scoreData));
+
+    //update high score table display
+    document.querySelector("#high-score-div").innerHTML = highScoreHtml ();
+
+    document.querySelector("#score-submit-section").style.display = 'none';
+
+    document.querySelector("#score-section").style.display = 'block';
+
+  }
+  else
+  {
+    //display warning
+    document.querySelector("#score-submit-tip").innerHTML = "Please enter your name.";
+  }
+  
+}
+
+
+
+
+function scoreRemove () {
+
+  localStorage.removeItem('score');
+  document.querySelector("#high-score-div").innerHTML = "High score list has been reset";
+}
+

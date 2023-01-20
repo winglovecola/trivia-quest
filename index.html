@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Password Generator - Secure Key</title>
+    <title>Fun Quiz Challenge - Trivia Quest</title>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,12 +11,10 @@
   </head>
 
 
-  <body ng-app="app" ng-controller="myController">
-
-
+  <body>
     <!-- header section -->
-    <header ng-show="showItem.header">
-      <h1>Secure Key</h1>
+    <header>
+      <h1>Trivia Quest</h1>
     </header>
     
 
@@ -24,61 +22,59 @@
     <!-- main section -->
     <main id="main">
       
+      <!-- intro section -->
+      <section id="intro-section" class="intro-section">
+        <h2>Press start when you are ready to begin this coding quiz challenge. Your high score will be calculate base on your time. The faster you complete the quest, the higher your score. Incorrect answers will be penalize your time/score by 10 seconds</h2>
+
+
+        <div class="start-btn">
+          <button id="start" class="btn" onclick="questStart ()">Start Quest</button>
+        </div>
+      </section>
+
+  
+
+      <!-- quiz section -->
+      <section id="quiz-section">
+
+        <div id="timer"></div>
+        <div id="question"></div>
+        <div id="answers">
+          <div id="ac0" class="answer-choice" onclick="answer (0)">test1</div>
+          <div id="ac1" class="answer-choice" onclick="answer (1)">test2</div>
+          <div id="ac2" class="answer-choice" onclick="answer (2)">test3</div>
+          <div id="ac3" class="answer-choice" onclick="answer (3)">test4</div>
+        </div>
+
+        <div id="result"></div>  
+      </section>
+
+
+      <!-- score section -->
       
-      <div ng-show="showItem.keygenHeaderCard" class="card-header">
-        <h2>Generate a secure password base on your preference!</h2>
-      </div>
-
-      <div ng-show="showItem.keygenBtn" class="generate-btn">
-        <button id="generate" class="btn" ng-click="keygenStart ()">Generate Password</button>
-      </div>
-
-      <!-- choose password character length -->
-      <section ng-show="showItem.keygenPrefChar" class="keygen-pref-char">
-        <h2>Choose how many characters for your password.</h2>
-        <div id="char-num-tips">Min 8 and Max 128 characters</div>
-        <br><br>
-        <button class="btn-change-char" ng-click="kengenCharNumSub ()">-</button> <input type="text" class="input-change-char" ng-model="kengenCharNum" minlength="1" maxlength="3"/> <button class="btn-change-char" ng-click="kengenCharNumAdd ()">+</button>
-        
-        <br><br>
-        <button ng-show="showItem.keygenNextBtn" class="btn" ng-click="keygenPrefChar ()">Next</button>
+      <section id="score-submit-section">  
+        <div id="final-score"></div>
+        <div id="submit-score">
+            Your Name: <input type="text" id="name" name="name"> <input type="button" value="Submit" onclick="scoreSave ()">  
+            <div id="score-submit-tip"></div> 
+        </div>
       </section>
 
 
 
-      <!-- choose password character type -->
-      <section id="char-type-section" ng-show="showItem.keygenPrefType" class="keygen-pref-type">
-        <h2>Choose what type of characters are in your password.</h2>
-        <div class="warning" ng-show="showItem.keygenPrefTypeWarning">At least one type has to be selected</div>
-        <ul>
-          <li><input type="checkbox" ng-model="cbKeygenType.lowercase">&nbsp;&nbsp;&nbsp;Lowercase</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.uppercase">&nbsp;&nbsp;&nbsp;Uppercase</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.numeric">&nbsp;&nbsp;&nbsp;Numeric</li>
-          <li><input type="checkbox" ng-model="cbKeygenType.specialChar">&nbsp;&nbsp;&nbsp;Special Characters</li>
-        </ul>
-
-        <br><br>
-        
-        <button class="btn" ng-click="keygenConfirm ()">{{btns.keygenConfirmBtn}}</button>
-      </section>
-
-
-      <!-- password display section -->
-      <section class="keygen-display" ng-show="showItem.keygenSecureKeyDisplay">
-        <div id="secure-key-div">{{secureKey}}</div>
+      <section id="score-section">  
+        <div id="high-score-option"> <input type="button" value="Play Again" onclick="restart ()"> <input type="button" value="Clear high scores" onclick="scoreRemove ()"></div>
+        <div id="high-score-div"></div>
+     
       </section>
     </main>
 
 
     <!-- footer section -->
     <footer>
-      Thank you for using!
+      Thank you for playing!
     </footer>
 
-
-
-    <script src="./assets/js/angular.min.js"></script>
-    <script src="./assets/js/angular-animate.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
