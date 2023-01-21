@@ -34,6 +34,30 @@ let questionData = {
     question: "JavaScript is only used in front-end web development.",
     answerChoice: ["true", "false"],
     answer: "false"
+  },
+
+  q3: {
+    question: "The condition in an if / else statement is enclosed with _________.",
+    answerChoice: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    answer: "parenthesis"
+  },
+
+  q4: {
+    question: "Arrays in JavaScript can be used to store _________.",
+    answerChoice: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+    answer: "all of the above"
+  },
+
+  q5: {
+    question: "String value must be enclosed with _________ when being assigned to variables.",
+    answerChoice: ["commas", "curly brackets", "quotes", "parenthesis"],
+    answer: "quotes"
+  },
+
+  q6: {
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    answerChoice: ["Javascript", "terminal/bash", "loops", "console.log"],
+    answer: "console.log"
   }
 }
 
