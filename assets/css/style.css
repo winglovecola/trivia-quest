@@ -27,6 +27,9 @@ header {
   margin-bottom: 30px;
 }
 
+
+
+/* intro section */
 #intro-section {
 
   display: block;
@@ -38,6 +41,8 @@ header {
 }
 
 
+
+/* quiz section */
 #quiz-section {
 
   display: none;
@@ -88,6 +93,9 @@ header {
   margin-bottom: 20px;
 }
 
+
+
+
 #result {
 
   display: block;
@@ -135,7 +143,7 @@ header {
 }
 
 
-
+/* score submit section */
 #score-submit-section {
 
   display: none;
@@ -157,7 +165,6 @@ header {
 }
 
 
-/* main section */
 
 
 .btn {
@@ -182,6 +189,9 @@ header {
   background-color: rgb(204, 62, 62);
 }
 
+
+
+/* score css */
 #score-submit-section {
   width: 100%;
   max-width: 1000px;
@@ -321,6 +331,7 @@ footer {
 
 
 @media (max-width: 690px) {
+  /* quiz section */
   #question-div {
     padding-left: 10px;
 
@@ -339,7 +350,7 @@ footer {
     padding: 10px;
   }
 
-
+  /* score css */
   #view-top-score {
     left: 50%;
     transform: translate(-50%);
