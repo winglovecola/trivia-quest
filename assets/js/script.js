@@ -8,7 +8,7 @@ let scoreDataRaw = localStorage.getItem("score");
 let scoreData = {};
 let timerIimeout;
 let timerInterval;
-
+let answeringQuestion = false;
 
 
 if (scoreDataRaw)
@@ -63,7 +63,7 @@ let questionData = {
 
 
 
-
+document.querySelector("#top-score-table").innerHTML = highScoreHtml ();
 
 
 function updateTimer () {
@@ -83,7 +83,8 @@ function questStart () {
   timer = 75; 
   finalScore = 0;
 
-
+  
+  document.querySelector("#view-top-score").style.display = 'none';
   document.querySelector("#intro-section").style.display = 'none';
   document.querySelector("#quiz-section").style.display = 'block';
 
@@ -122,6 +123,9 @@ function questStart () {
 
 //start question or next question
 function questionShow () {
+  
+  answeringQuestion = false;
+  
   
   if (document.querySelector("#result").innerHTML != "")
   {
@@ -178,38 +182,46 @@ function questionShow () {
 
 function answer (answerPick) {
 
-  console.log (answerPick);
 
-  console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
-
-  clearTimeout (timerIimeout);
-
-  if (thisQuestionData.answerChoice[answerPick] == thisQuestionData.answer)
+  if (answeringQuestion == false)
   {
-    //correct answer 
-    document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-happy.png'> CORRECT!";
-  }
-  else
-  {
-    //incorrect answer 
-    document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-sad.png'> WRONG!";
+    answeringQuestion = true; //prevent double click on answer
 
 
-    timer = timer - penalityTimeDeduction;
-    if (timer < 0)
+    console.log (answerPick);
+
+    console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
+
+    clearTimeout (timerIimeout);
+
+    if (thisQuestionData.answerChoice[answerPick] == thisQuestionData.answer)
     {
-      timer = 0;
+      //correct answer 
+      document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-happy.png'> CORRECT!";
+    }
+    else
+    {
+      //incorrect answer 
+      document.querySelector("#result").innerHTML = "<img src='./assets/images/emoji-sad.png'> WRONG!";
+
+
+      timer = timer - penalityTimeDeduction;
+      if (timer < 0)
+      {
+        timer = 0;
+      }
+
+      updateTimer (); 
+
+      
     }
 
-    updateTimer (); 
-  }
+    var timerIimeout = setTimeout(function() {
 
-  var timerIimeout = setTimeout(function() {
+      questionShow ();
 
-    questionShow ();
-
-  }, 700);
-  
+    }, 700);
+  }  
 }
 
 
@@ -220,6 +232,11 @@ function restart () {
   document.querySelector("#quiz-section").style.display = 'none';
   document.querySelector("#score-submit-section").style.display = 'none';
   document.querySelector("#score-section").style.display = 'none';
+
+  if (scoreData)
+    if (Object.keys(scoreData).length > 0)
+      document.querySelector("#view-top-score").style.display = 'block';
+
 }
 
 //end game and display score
@@ -260,9 +277,16 @@ function gameover () {
 function highScoreHtml () {
 
   //sort high score data
-console.log ("testtest: " + scoreData);
+
   if (scoreData)
   {
+    if (Object.keys(scoreData).length === 0)
+    {
+      document.querySelector("#view-top-score").style.display = 'none';
+      return "<ul><li>No high score yet</li></ul>";
+    }
+
+
     let sortedHighScore = [];
     for (let player in scoreData) {
       sortedHighScore.push([player, scoreData[player]]);
@@ -288,7 +312,11 @@ console.log ("testtest: " + scoreData);
 
   }
   else
-    return "";
+  {
+    document.querySelector("#view-top-score").style.display = 'none';
+    return "<ul><li>No high score yet</li></ul>";
+  }
+    
 }
 
 
@@ -319,6 +347,8 @@ function scoreSave () {
 
     //update high score table display
     document.querySelector("#high-score-div").innerHTML = highScoreHtml ();
+    document.querySelector("#top-score-table").innerHTML = highScoreHtml ();
+
 
     document.querySelector("#score-submit-section").style.display = 'none';
 
@@ -343,6 +373,8 @@ function scoreRemove () {
   localStorage.removeItem('score');
   scoreData = {};
 
+
+  document.querySelector("#top-score-table").innerHTML = highScoreHtml ();
   document.querySelector("#high-score-div").innerHTML = "High score list has been reset";
 }
 

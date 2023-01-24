@@ -19,7 +19,7 @@ h2 {
 /* header section */
 header {
   display: block;
-  
+  min-width: 350px;
   text-align: center;
   background-color: rgb(55, 37, 116);
   color: white;
@@ -224,11 +224,41 @@ header {
   color: white;
 }
 
+#view-top-score {
+
+  display: block;
+  position: absolute;
+  top: 120px;
+  left: 30px;
+  height: 40px;
+  font-size: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  margin-left: 20px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index:1;
+}
+
+
+#view-top-score:hover {
+  height: 700px;
+}
+
+
+#top-score-table {
+  display: block;
+  margin-top: 50px;
+}
 
 #high-score-div {
 
   margin-top: 5px;
-  
+  margin-bottom: 100px;
 }
 
 #high-score-div-title {
@@ -238,7 +268,7 @@ header {
   font-weight: bold;
 }
 
-#high-score-div ul {
+.high-score-div ul {
   
   width: 300px;
   border: 1px solid black;
@@ -247,16 +277,16 @@ header {
   margin: auto;
 }
 
-#high-score-div li:nth-child(even) {
+.high-score-div li:nth-child(even) {
   background-color: rgb(207, 207, 207);
 }
 
-#high-score-div li {
+.high-score-div li {
   padding: 10px;
   text-align: left;
 }
 
-#high-score-div .li-score {
+.high-score-div .li-score {
 
   display: inline-block;
   padding: 10px;
@@ -308,6 +338,15 @@ footer {
     min-width: 250px;
     padding: 10px;
   }
+
+
+  #view-top-score {
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    margin-left: 0px;
+  }
+  
   
 }
 
