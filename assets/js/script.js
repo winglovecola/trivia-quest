@@ -1,5 +1,3 @@
-
-
 let timer; 
 let penalityTimeDeduction = 10; //10 sec
 let finalScore = 0;
@@ -179,7 +177,7 @@ function questionShow () {
 
 
 
-
+//excute when user click on answer
 function answer (answerPick) {
 
 
@@ -188,9 +186,9 @@ function answer (answerPick) {
     answeringQuestion = true; //prevent double click on answer
 
 
-    console.log (answerPick);
+    //console.log (answerPick);
 
-    console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
+    //console.log (thisQuestionData.answerChoice[answerPick], thisQuestionData.answer)
 
     clearTimeout (timerIimeout);
 
@@ -223,6 +221,8 @@ function answer (answerPick) {
     }, 700);
   }  
 }
+
+
 
 
 //restart game
@@ -262,7 +262,7 @@ function gameover () {
   
   if (scoreDataRaw)
   {
-    console.log (scoreDataRaw);
+    //console.log (scoreDataRaw);
     
     document.querySelector("#high-score-div").innerHTML = highScoreHtml ();
   }
@@ -326,21 +326,16 @@ function scoreSave () {
 
   let playerName = document.getElementById("name").value;
 
-  console.log (playerName)
+  //console.log (playerName)
 
   if (playerName && playerName.length > 0) //player name is not empty
   {
-    
-  
     let datakey = "hs" + playerName.replace(/[^a-zA-Z0-9]/g, '');
     
     scoreData[datakey] = {name: playerName, score: finalScore};
 
 
     
-
-
-
     //save to local storage in browser
     //console.log (JSON.stringify(scoreData));
     localStorage.setItem("score", JSON.stringify(scoreData));
@@ -367,7 +362,7 @@ function scoreSave () {
 
 
 
-
+//reset score
 function scoreRemove () {
 
   localStorage.removeItem('score');
