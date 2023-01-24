@@ -16,4 +16,3 @@ https://winglovecola.github.io/trivia-quest
 ## License
 
 Please refer to the LICENSE in the repo. 
-# trivia-quest
