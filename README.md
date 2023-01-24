@@ -11,7 +11,7 @@ https://winglovecola.github.io/trivia-quest
 
 ## Preview
 
-![Website screenshot 1](https://github.com/winglovecola/trivia-quest/blob/main/assets/images/screenshot1.jpg?raw=true)
+![Website screenshot 1](https://github.com/winglovecola/trivia-quest/blob/main/assets/images/screenshot.jpg?raw=true)
 
 ## License
 
