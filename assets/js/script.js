@@ -260,7 +260,7 @@ function gameover () {
 
   //load score data from localStorage
   
-  if (scoreDataRaw)
+  if (scoreData)
   {
     //console.log (scoreDataRaw);
     
